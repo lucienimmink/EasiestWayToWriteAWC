@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>The easiest way to write Web Components</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/league.css" />
+    <link rel="stylesheet" href="lib/css/monokai.css" />
+    <link rel="stylesheet" href="css/reveal-editor.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+
+    <script src="plugin/jquery.min.js"></script>
+    <script src="plugin/ace.js"></script>
+    <script src="js/reveal-editor.js"></script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-group="title" data-background="#212121">
+          <h1>The easiest way to write Web Components</h1>
+        </section>
+        <section data-group="intro">
+          <section>
+            <blockquote>
+              "I'd like to display album art. <br />
+              Here is my <span class="code-element">artist</span> and
+              <span class="code-element">album name</span>."
+            </blockquote>
+            <span class="fragment reveal-album">
+              <album-art artist="ayreon"></album-art> <br />
+              Ayreon <br /> &nbsp;
+            </span>
+            <span class="fragment reveal-album">
+              <album-art artist="tool" album="fear inoculum"></album-art><br />
+              Tool <br/> <span class="small muted">Fear Inoculum</span>
+            </span>
+          </section>
+          <section>
+            <h3>A simple statement but it requires some work</h3>
+            <ul>
+              <li class="fragment">Find the album art online</li>
+              <li class="fragment">
+                Add caching to sequential calls to the same art
+              </li>
+              <li class="fragment">
+                Optimize the image for the required dimensions
+              </li>
+              <li class="fragment">...</li>
+              <li class="fragment">All without bothering the developer</li>
+            </ul>
+          </section>
+          <section>
+            <h3>We can write the logic and present it as a script</h3>
+            <pre><code class="hljs js">const albumArt = ({artist, album}) => {
+  let magic;
+  // do magic, magic will return an &lt;img&gt; tag
+  return magic;
+}</code></pre>
+            <span class="code-file">File: album-art.js</span>
+          </section>
+          <section>
+            <h3>and use that script in a page</h3>
+            <pre><code class="hljs html">&lt;script src="//my-domain.example.com/album-art.js">&lt;/script>
+
+<div id="art"></div>
+
+&lt;script>
+  const art = albumArt({artist: 'epica', album: 'Ωmega'});
+  document.querySelector("#art").innerHTML = art;
+  // 👊🤐💩💣 ... never trust external HTML
+&lt;/script>
+</code></pre>
+            <span class="code-file">File: alien-page.html</span>
+          </section>
+          <section>
+            <h3>This works ... until it becomes too complex</h3>
+            <ul>
+              <li class="fragment">
+                It requires a lot of shared knowledge
+              </li>
+              <li class="fragment">or "reading documentation"</li>
+              <li class="fragment">Who is responsible for the styling?</li>
+              <li class="fragment">
+                An <span class="code-element">&lt;iframe&gt;</span> is not
+                always a solution
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>
+              Just make it a
+              <span class="code-element"
+                >[insert favourite framework here]</span
+              >
+              component!
+            </h2>
+          </section>
+          <section>
+            <h2>
+              ... but we use
+              <span class="code-element">[insert other framework here]</span>
+            </h2>
+          </section>
+          <section>
+            <blockquote>
+              "Have fun rewriting your
+              <span class="code-element">[insert enormous component here]</span>
+              using
+              <span class="code-element">[insert other framework here]</span>"
+              <br />
+              <br />
+              <span class="fragment"
+                >"... and please use TypeScript!"<br
+              /></span>
+              <span class="fragment">"I'm off for a 🍺 or 🍻."</span>
+            </blockquote>
+            <span class="small fragment"
+              >- your least favourite co-worker or boss type of person</span
+            >
+          </section>
+        </section>
+        <section data-group="ISAAC - Lucien Immink">
+          <section data-background="#212121">
+            <h2>Lucien Immink, B.Eng</h2>
+            <span class="fragment small"
+              >Hopefully not that least favourite person</span
+            >
+          </section>
+          <section>
+            <img src="img/lucien-square.webp" alt="Lucien Immink, B.Eng" />
+          </section>
+          <section>
+            Software Architect &amp; <br />
+            Web Evangelist<br />
+            @ ISAAC <em>(part of Intracto group)</em> <br />
+            the Netherlands
+          </section>
+          <section>
+            <div id="google-maps">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70.49368579825386!2d5.463075369060892!3d51.4512164400623!2m3!1f0!2f45.04469628013218!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x47c6d93fcde42b59%3A0xb1fdab2a93bde85d!2sISAAC!5e1!3m2!1sen!2snl!4v1571839417768!5m2!1sen!2snl"
+                width="600"
+                height="450"
+                frameborder="0"
+                style="border:0;"
+                allowfullscreen=""
+              ></iframe>
+            </div>
+          </section>
+        </section>
+        <section data-group="what-are">
+          <section data-background="#212121">
+            <h3>Web components</h3>
+            <img src="img/web-components.webp" alt="Web components" />
+          </section>
+          <section>
+            <h1>Templates</h1>
+          </section>
+          <section>
+            <p>
+              The HTML content
+              <span class="code-element">&lt;template&gt;</span> element is a
+              mechanism for holding HTML.
+            </p>
+          </section>
+          <section>
+            <h3>Example template</h3>
+            <pre><code class="hljs html" data-line-numbers="1,5,6,9"><template id="template">
+  <div class="card card-artist">
+    <img class="card-img-top" alt="artist" src="placeholder.webp">
+    <p class="card-body">
+      <slot name="artist">artist name</slot>
+      <slot name="bio">artist bio</slot>
+    </p>
+  </div>
+</template></code></pre>
+            <span class="code-file">File: some-page.html</span>
+            <aside class="notes">
+              &lt;slot&gt; is a placeholder inside a web component that you can
+              fill with your own markup, which lets you create separate DOM
+              trees and present them together.
+            </aside>
+          </section>
+          <section>
+            <p class="warn">
+              This DOM is not live.<br />
+              No calls will be made to fetch the image. <br />
+              No CSS is applied.<br />
+              No script is excecuted.
+            </p>
+          </section>
+          <section>
+            <h3>Use JavaScript to use the template</h3>
+            <pre><code class="hljs js" data-line-numbers>if ('content' in document.createElement('template')) {
+  const template = document.querySelector('#template');
+
+  // clone the template and fill in the values
+  const clone = document.importNode(template.content, true);
+  clone.querySelector('.card-img-top').setAttribute('src', url);
+  // ...
+  // now we can add it to the DOM
+  document.querySelector('body').appendChild(clone);
+}</code></pre>
+            <span class="code-file">File: some-script.js</span>
+          </section>
+          <section>
+            <p class="success">
+              Once added the image is fetched. <br />
+              CSS is applied to the nodes. <br />
+              Script is excecuted.
+            </p>
+          </section>
+          <section>
+            <h1>Custom Elements</h1>
+          </section>
+          <section>
+            <p>
+              The ability to create
+              <span class="fragment highlight-blue">custom elements</span> that
+              encapsulate your
+              <span class="fragment highlight-blue">functionality</span> on an
+              HTML page, rather than having to make do with a
+              <span class="fragment highlight-red"
+                >long, nested batch of elements</span
+              >
+              that together provide a custom page feature.
+            </p>
+          </section>
+          <section>
+            <h3>Create custom element by extending HTML element</h3>
+            <pre><code class="hljs js" data-line-numbers>class AlbumArt extends HTMLElement {
+  constructor() {
+    // Always call super first
+    super();
+
+    // add your magic
+  }
+}</code></pre>
+            <span class="code-file">File: my-custom-element.js</span>
+          </section>
+          <section>
+            <h3>Registering the element is a one-liner</h3>
+            <pre><code class="hljs js" data-line-numbers>customElements.define('album-art', AlbumArt);</code></pre>
+            <span class="code-file">File: my-custom-element.js</span>
+          </section>
+          <section>
+            <h3>Customize built-in elements</h3>
+            <pre><code class="hljs js" data-line-numbers>class List extends HTMLULElement {
+  // enter code here; but think of the consequences
+  // do you really need to extend a built-in element?
+  // how it that not confusing 🤷
+  // on the other hand, you have your fallback for free 🎉
+};
+customElements.define('list', List, { extends: "ul" });</code></pre>
+            <span class="code-file">File: my-custom-built-in-element.js</span>
+            <pre><code class="hljs html" data-line-numbers><ul is="list"></ul></code></pre>
+            <span class="code-file">File: my-custom-build-in-page.html</span>
+          </section>
+          <section>
+            <h3>Use them anywhere</h3>
+            <pre><code class="hljs html" data-line-numbers="3-7"><article class="artist-info">
+  <p>Lorem ipsizzle sit down sit down sizzle amizzle</p>
+  <album-art artist="2pac">
+    <p slot="bio">Crizzle aliquam daahng dawg sure mi.
+      Shut the shizzle up socizzle natoque penatibizzle
+      check it out ma nizzle crazy hizzle</p>
+  </album-art>
+  <p>Nullam sapien velizzle, crazy volutpizzle, fo shizzle.</p>
+</article></code></pre>
+            <span class="code-file">File: alien-page.html</span>
+            <span class="small fragment"
+              >Gangsta loremizzle my ippzle:
+              <a href="http://lorizzle.nl/" target="_blank" rel="noopener"
+                >http://lorizzle.nl/</a
+              ></span
+            >
+          </section>
+          <section>
+            <h2>Lifecycle callbacks</h2>
+            <ul>
+              <li class="code-element fragment fade-in-then-semi-out">
+                connectedCallback
+              </li>
+              <li class="code-element fragment fade-in-then-semi-out">
+                disconnectedCallback
+              </li>
+              <li class="code-element fragment fade-in-then-semi-out">
+                adoptedCallback
+              </li>
+              <li class="code-element fragment fade-in-then-semi-out">
+                attributeChangedCallback
+              </li>
+            </ul>
+            <aside class="notes">
+              <p>
+                connectedCallback: Invoked each time the custom element is
+                appended into a document-connected element.
+              </p>
+              <p>
+                disconnectedCallback: Invoked each time the custom element is
+                disconnected from the document's DOM.
+              </p>
+              <p>
+                adoptedCallback: Invoked each time the custom element is moved
+                to a new document. example: move element between iframes.
+              </p>
+              <p>
+                attributeChangedCallback: Invoked each time one of the custom
+                element's attributes is added, removed, or changed.
+              </p>
+            </aside>
+          </section>
+          <section>
+            <h1>Shadow DOM</h1>
+          </section>
+          <section>
+            <p>
+              Shadow DOM allows
+              <span class="fragment highlight-blue">hidden DOM trees</span> to
+              be attached to elements in the regular DOM tree.
+            </p>
+          </section>
+          <section>
+            <img src="img/shadow-dom.webp" alt="shadow dom explanation" />
+          </section>
+          <section>
+            <h3>Attach a shadow DOM inside a custom element</h3>
+            <pre><code class="hljs js" data-line-numbers>const shadow = this.attachShadow({mode: 'open'});</code></pre>
+            <span class="code-file">File: my-custom-element.js</span>
+            <!-- TODO: andere zinnen van maken -->
+            <p class="fragment small">
+              Open: Elements of the shadow root are accessible from JavaScript
+              outside the root.
+            </p>
+            <p class="fragment small">
+              Closed: Denies access to the node(s) of a closed shadow root from
+              JavaScript outside it.
+            </p>
+          </section>
+          <section>
+            <h3>Create the shadow DOM</h3>
+            <pre><code class="hljs js" data-line-numbers>const wrapper = document.createElement('div');
+wrapper.classList.add('wrapper');
+const image = document.createElement('img');
+
+// use the img attributre of the custom element if present
+let imageUrl = 'img/placeholder.webp';
+if (this.hasAttribute('img')) {
+  imageUrl = this.getAttribute('img');
+}
+image.src = imageUrl;
+
+// add the new elements to the shadow DOM
+wrapper.appendChild(image);
+shadow.appendChild(wrapper);</code></pre>
+            <span class="code-file">File: my-custom-element.js</span>
+          </section>
+          <section>
+            <h3>and add styling</h3>
+            <pre><code class="hljs js" data-line-numbers>const styleElem = document.createElement('style');
+styleElem.textContent = `
+  .wrapper {
+    position: relative;
+  }
+  img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+`;
+shadow.appendChild(styleElem);</code></pre>
+            <span class="code-file">File: my-custom-element.js</span>
+          </section>
+          <section>
+            <h3>Bonus: CSS Variables</h3>
+            <pre><code class="hljs js" data-line-numbers="3-7,9-10">const styleElem = document.createElement('style');
+styleElem.textContent = `
+  :host {
+    --primary: rgb(0 110 205);
+    --fallback: red;
+    --background: rgb(249 249 249);
+  }
+  p {
+    background-color: var(--background);
+    color: var(--primary, var(--fallback, white));
+  }
+`;
+shadow.appendChild(styleElem);</code></pre>
+            <span class="code-file">File: my-custom-element.js</span>
+          </section>
+        </section>
+        <section data-group="integrate">
+          <section data-background="#212121">
+            <h2>Using some tools</h2>
+          </section>
+          <section>
+            <h3>Weapons of choice</h3>
+            <ul>
+              <li class="fragment">LitElement</li>
+              <li class="fragment">Stencil</li>
+              <li class="fragment">vue.js</li>
+            </ul>
+            <p class="small muted fragment">Though many more exist</p>
+          </section>
+          <section>
+            <h3>LitElement</h3>
+            <blockquote>LitElement uses <span class="fragment highlight-blue">lit-html</span> to render into shadow DOM, and adds API to <span class="fragment highlight-blue">manage properties and attributes</span>. Properties are observed by default, and elements update <span class="fragment highlight-blue">asynchronously</span> when their properties change.</blockquote>
+          </section>
+          <section>
+            <h3>LitElement &bull; Component</h3>
+            <pre><code class="hljs js" data-line-numbers>import {LitElement} from 'lit-element';
+
+export class AlbumArt extends LitElement { ... } 
+customElements.define('album-art', MyElement);</code></pre>
+            <span class="code-file">File: album-art-component.js</span>
+<pre><code class="hljs js" data-line-numbers>import {LitElement, customElement} from 'lit-element';
+
+@customElement('album-art')
+export class AlbumArt extends LitElement { ... }</code></pre>
+            <span class="code-file">File: album-art-component.ts</span>
+          </section>
+          <section>
+            <h3>LitElement &bull; render</h3>
+            <pre><code class="hljs js" data-line-numbers="5-12">import {LitElement, html} from 'lit-element';
+
+export class AlbumArt extends LitElement {
+  ...
+  render() {
+    return html`
+      <a href="${this.url}">
+        <img alt="${this.artist} - ${this.album}" src="${this.src}">
+        <slot></slot>
+      </a>
+    `;
+  }
+}</code></pre>
+            <span class="code-file">File: album-art-component.ts</span>
+          </section>
+          <section>
+            <h3>LitElement &bull; properties</h3>
+            <pre><code class="hljs js" data-line-numbers="5-8">import {LitElement, property} from 'lit-element';
+              
+export class MyElement extends LitElement {
+  ...
+  @property({type: String})
+  artist = 'Amorphis';
+  @property({type: String})
+  album = 'Skyforger';
+  ...
+}</code></pre>
+            <span class="code-file">File: album-art-component.ts</span>
+          </section>
+          <section>
+            <h3>LitElement &bull; styles</h3>
+            <pre><code class="hljs js" data-line-numbers="5-9">import {LitElement, css, html} from 'lit-element';
+              
+class AlbumArt extends LitElement {
+  static get styles() {
+    return css`
+      :host { color: var(--text-color); }
+      a { text-decoration: none; }
+      ::slotted(*) { font-family: Roboto; }
+    `;
+  }
+  render() {
+    return html`
+      <a href="${this.url}">
+        <img alt="${this.artist} - ${this.album}" src="${this.src}">
+        <slot></slot>
+      </a>
+    `;
+  }
+}</code></pre>
+            <span class="code-file">File: album-art-component.ts</span>
+            <p class="fragment muted small">Note that only direct slotted children can be styled with <span class="code-element">::slotted()</span>.</p>
+          </section>
+
+          <section>
+            <h3>LitElement &bull; events</h3>
+            <pre><code class="hljs js" data-line-numbers="3-11,15">import {LitElement, html, eventOptions} from 'lit-element';
+...
+@eventOptions({passive: true})
+private _handleTouchStart() { 
+  const event = new CustomEvent('touch-started', {
+    detail: {
+      message: 'Touch event touchstart occured in custom element'
+    }
+  });
+  this.dispatchEvent(event);
+}
+
+render() { 
+  return html`
+    <div @touchstart=${this._handleTouchStart}></div>
+  `;
+}</code></pre>
+            <span class="code-file">File: album-art-component.ts</span>
+          </section>
+          <section>
+            <h3>Stencil</h3>
+            <blockquote>Stencil is a <span class="fragment highlight-blue">toolchain</span> for building reusable, scalable <span class="fragment highlight-blue">Design Systems</span>. Generate small, blazing fast, and 100% standards based Web Components that run in every browser.</blockquote>
+          </section>
+          <section>
+            <h3>Stencil &bull; Component</h3>
+            <pre><code class="hljs js" data-line-numbers>import { Component, Prop, h } from '@stencil/core';
+
+@Component({
+  tag: 'album-art',
+})
+export class AlbumArt { ... }</code></pre>
+            <span class="code-file">File: album-art-component.tsx</span>
+          </section>
+          <section>
+            <h3>Stencil &bull; render</h3>
+            <pre><code class="hljs js" data-line-numbers="6-13">import { Component, Prop, h } from '@stencil/core';
+
+@Component({ tag: 'album-art' })
+export class AlbumArt {
+  ... 
+  render() {
+    return (
+      <a href="{this.url}">
+        <img alt="{this.artist} - {this.album}" src="{this.src}" />
+        <slot></slot>
+      </a>
+    );
+  }
+ }</code></pre>
+            <span class="code-file">File: album-art-component.tsx</span>
+          </section>
+          <section>
+            <h3>Stencil &bull; properties</h3>
+            <pre><code class="hljs js" data-line-numbers="6-7">import { Component, Prop, h } from '@stencil/core';
+
+@Component({ tag: 'album-art' })
+export class AlbumArt {
+  ... 
+  @Prop() artist: string;
+  @Prop() album: string;
+  ...
+}</code></pre>
+            <span class="code-file">File: album-art-component.tsx</span>
+          </section>
+          <section>
+            <h3>Stencil &bull; styles</h3>
+            <pre><code class="hljs js" data-line-numbers="5,6">import { Component, Prop, h } from '@stencil/core';
+
+@Component({ 
+  tag: 'album-art',
+  styleUrl: 'album-art.css',
+  shadow: true
+})
+export class AlbumArt {
+  ... 
+}</code></pre>
+            <span class="code-file">File: album-art-component.tsx</span>
+            <p class="fragment muted small">With Shadow DOM enabled, elements within the shadow root are scoped, and styles outside of the component do not apply.</p>
+          </section>
+
+          <section>
+            <h3>Stencil &bull; styles - 2</h3>
+            <pre><code class="hljs css" data-line-numbers>:host { 
+  color: var(--text-color, var(--fallback, black)); 
+}
+a { 
+  text-decoration: none;
+}</code></pre>
+            <span class="code-file">File: album-art.css</span>
+          </section>
+
+          <section>
+            <h3>Stencil &bull; events</h3>
+            <pre><code class="hljs js" data-line-numbers="3, 5-8">import { Event, EventEmitter, Listen } from '@stencil/core';
+...
+@Event() handleTouchStart: EventEmitter&lt;AlbumArt&gt;;
+
+@Listen('touchstart', { target: 'document', passive: true })
+handleTouchStart(event) { 
+  this.touchStarted.emit(this);
+}
+</code></pre>
+            <span class="code-file">File: album-art-component.tsx</span>
+          </section>
+          <section>
+            <h3>vue.js</h3>
+            <blockquote>The Progressive JavaScript <span class="fragment highlight-blue">Framework</span></blockquote>
+          </section>
+          <section>
+            <h3>vue.js</h3>
+            <pre><code class="hljs bash">$ vue create album-art-webcomponent</code></pre>
+          </section>
+          <section>
+            <h3>vue.js</h3>
+            <pre><code class="hljs html" data-line-numbers><template>
+  <a :href="url">
+    <img :alt="`${artist} - ${album}`" :src="src">
+  </a>
+</template>
+<script>
+  export default {
+    name: 'album-art',
+    props: ['url', 'artist', 'album', 'src']
+  }
+</script></code></pre>
+            <span class="code-file">File: album-art.vue</span>
+          </section>
+          <section>
+            <h3>vue.js</h3>
+            <pre><code class="hljs bash">$ vue-cli-service build --target wc --name album-art album-art.vue</code></pre>
+            or for multiple components:
+            <pre><code class="hljs bash">$ vue-cli-service build --target wc --name prefix '*.vue'</code></pre>
+          </section>
+          <section>
+            <h3>vue.js &bull; size</h3>
+            <img src="img/vue-wc.webp" alt="output of vue-cli-service build --target wc">
+          </section>
+          <section>
+            <h3>vue.js &bull; Vue Dependency</h3>
+            <p class="warn">
+              In web component mode, Vue is <em>externalized</em>. This means the bundle will not bundle Vue even if your code imports Vue. The bundle will assume <span class="code-element">Vue</span> is available on the host page as a global variable.
+            </p>
+          </section>
+          <section>
+            <h3>vue.js &bull; inline vue runtime</h3>
+            <pre><code class="hljs bash">$ vue-cli-service build --target wc --inline-vue --name album-art album-art.vue</code></pre>
+            <img src="img/vue-wc-inline.webp" alt="output of vue-cli-service build --target wc --inline-vue">
+          </section>
+          <section>
+            <h3>vue.js vs LitElement</h3>
+            <p class="muted small">vue.js</p>
+            <img src="img/vue-wc-inline.webp" alt="output of vue-cli-service build --target wc --inline-vue">
+            <p class="muted small">LitElement</p>
+            <img src="img/litelement-wc.webp" alt="output of the same web component build but written using LitElement">
+            <img class="fragment" src="img/litelement-wc-no-lib.webp" alt="output of the same web component build but written using LitElement">
+          </section>
+        </section>
+        <section data-group="closing-thoughts">
+          <section data-background="#212121">
+            <h2>And so it's come to this</h2>
+          </section>
+          <section>
+            <h3>Web components</h3>
+            <pre><code class="hljs html" data-line-numbers="2-3"><div class="grid">
+  <album-art artist="the gathering"></album-art>
+  <album-art artist="tool" album="fear inoculum"></album-art>
+</div></code></pre>
+            <p class="fragment">
+              APIs to create new custom, reusable HTML tags
+            </p>
+            <p class="fragment">
+              with controlled style and markup that cannot leak.
+            </p>
+          </section>
+          <section>
+            <p>
+              Custom components built on the Web Component standards will work
+              across
+              <span class="fragment highlight-blue">modern browsers</span> and
+              can be used with any
+              <span class="fragment highlight-blue"
+                >JavaScript library or framework</span
+              >
+              that works with <span class="fragment highlight-blue">HTML</span>.
+            </p>
+          </section>
+          <section>
+            <h3>Web components are</h3>
+            <ul>
+              <li class="fragment">HTML templates</li>
+              <li class="fragment">Custom Elements</li>
+              <li class="fragment">Shadow DOM</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Web components</h3>
+            <ul>
+              <li class="fragment">Love CSS variables</li>
+              <li class="fragment">Can be build using various libraries or even frameworks</li>
+              <li class="fragment">Can fetch album art 🥳🎉</li>
+            </ul>
+          </section>
+        </section>
+        <section data-background="#212121">
+          <h1>Thank you!</h1>
+          <p class="small">
+            📧 lucien@isaac.nl <br />
+            🐦 lucienimmink <br />
+            🌍 www.isaac.nl
+          </p>
+        </section>
+      </div>
+    </div>
+    <div class="editor-hook"></div>
+
+    <script src="js/reveal.js"></script>
+    <script type="module" src="plugin/album-art.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: false,
+        progress: false,
+        history: true,
+        dependencies: [
+          { src: "plugin/notes/notes.js", async: true },
+          { src: "plugin/highlight/highlight.js", async: true }
+        ]
+      });
+
+      $("code").RevealEditor();
+    </script>
+  </body>
+</html>
