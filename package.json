@@ -1,34 +1,30 @@
 {
-  "name": "reveal.js",
-  "version": "3.8.0",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://revealjs.com",
-  "subdomain": "revealjs",
-  "main": "js/reveal.js",
+  "name": "easiest-way-to-write-a-wc",
+  "version": "0.1.0",
+  "description": "HTML presentation to describe the easiest way to write a web component",
+  "homepage": "https://easiestwaytowriteawc.netlify.app/",
   "scripts": {
     "test": "grunt test",
     "start": "grunt serve",
-    "build": "grunt",
-    "docker:build": "npm run --silent build && docker build -t 1-component-a-day:latest .",
-    "docker:start": "npm run --silent docker:build && docker run --rm -d -p 8082:80/tcp 1-component-a-day:latest"
+    "build": "grunt"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
+    "name": "Lucien Immink",
+    "email": "lucien@isaac.nl",
+    "web": "https://wwww.isaac.nl"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "url": "git://github.com/lucienimmink/EasiestWayToWriteAWC.git"
   },
   "engines": {
     "node": ">=9.0.0"
   },
   "devDependencies": {
     "express": "^4.17.1",
-    "grunt": "^1.0.4",
+    "grunt": "^1.3.0",
     "grunt-autoprefixer": "^3.0.4",
-    "grunt-cli": "^1.3.2",
+    "grunt-cli": "^1.4.2",
     "grunt-contrib-connect": "^2.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
@@ -45,8 +41,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "ace-builds": "^1.4.7",
-    "album-art-component": "^1.3.2",
+    "ace-builds": "^1.4.12",
+    "album-art-component": "^1.3.7",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-nodeunit": "^3.0.0",
     "jquery": "^3.6.0"

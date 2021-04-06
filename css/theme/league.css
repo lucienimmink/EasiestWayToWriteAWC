@@ -207,10 +207,7 @@ body {
   font-size: 0.6em;
   line-height: 1.2em;
   vertical-align: top; }
-.reveal .muted,
-.reveal .slides section .fragment.visible.muted {
-  opacity: 0.8;
-}
+
 .reveal small * {
   vertical-align: top; }
 
