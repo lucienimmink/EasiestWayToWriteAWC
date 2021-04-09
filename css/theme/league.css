@@ -211,6 +211,16 @@ body {
 .reveal small * {
   vertical-align: top; }
 
+.reveal .twitter-tweet {
+  justify-content: center;
+  max-width: 100% !important;
+}
+.reveal .twitter-tweet iframe {
+  max-width: 550px;
+  flex-grow: 0 !important;
+  transform: scale(1.35);
+  transform-origin: top left;
+}
 /*********************************************
  * LINKS
  *********************************************/

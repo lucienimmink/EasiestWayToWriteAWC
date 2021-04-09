@@ -29,6 +29,7 @@
     <script src="plugin/jquery.min.js"></script>
     <script src="plugin/ace.js"></script>
     <script src="js/reveal-editor.js"></script>
+    <script async src="https://unpkg.com/twitter-status@latest/dist/twitter-status.min.js"></script>
   </head>
   <body>
     <div class="reveal">
@@ -651,6 +652,10 @@ handleTouchStart(event) {
             <img src="img/litelement-wc.webp" alt="output of the same web component build but written using LitElement">
             <img class="fragment" src="img/litelement-wc-no-lib.webp" alt="output of the same web component build but written using LitElement">
           </section>
+          <section>
+            <h3>Web components interopbility</h3>
+            <blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">E.g., folks who like Vue should be able to use Vue to build their components, but still be able to consume things built another way. Similarly, folks who want to build in Vue should have a bigger market than Vue-centric apps. That future is enabled by interop + low runtime cost.</p>&mdash; Alex Russell (@slightlylate) <a href="https://twitter.com/slightlylate/status/1380202582635814917?ref_src=twsrc%5Etfw">April 8, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </section>
         </section>
         <section data-group="closing-thoughts">
           <section data-background="#212121">
@@ -693,7 +698,7 @@ handleTouchStart(event) {
             <h3>Web components</h3>
             <ul>
               <li class="fragment">Love CSS variables</li>
-              <li class="fragment">Can be build using various libraries or even frameworks</li>
+              <li class="fragment">Can be build and consumed <br />using various libraries / frameworks</li>
               <li class="fragment">Can fetch album art 🥳🎉</li>
             </ul>
           </section>
