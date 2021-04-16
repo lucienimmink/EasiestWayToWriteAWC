@@ -352,8 +352,21 @@ customElements.define('list', List, { extends: "ul" });</code></pre>
             </p>
             <p class="fragment small">
               Closed: Denies access to the node(s) of a closed shadow root from
-              JavaScript outside it.
+              JavaScript outside it.*
             </p>
+            <p class="fragment small muted">
+              * It is still possible to access the dom from outside the element. It's probably not worth the effort.
+            </p>
+          </section>
+          <section>
+            <pre><code class="hljs js" data-line-numbers="2,7">// my-custom-element.js
+this._root = this.attachShadow({ mode: "closed" });
+
+// somewhere-else.js
+const $myWebComponent = document.querySelector("my-web-component");
+$myWebComponent.shadowRoot // null
+$myWebComponent._root // shadow-root (closed)</code></pre>
+            <img src="img/shadow-dom-closed-override.gif" alt="Even will the component is 'closed' you can still override the content">
           </section>
           <section>
             <h3>Create the shadow DOM</h3>
@@ -655,6 +668,7 @@ handleTouchStart(event) {
           <section>
             <h3>Web components interopbility</h3>
             <blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">E.g., folks who like Vue should be able to use Vue to build their components, but still be able to consume things built another way. Similarly, folks who want to build in Vue should have a bigger market than Vue-centric apps. That future is enabled by interop + low runtime cost.</p>&mdash; Alex Russell (@slightlylate) <a href="https://twitter.com/slightlylate/status/1380202582635814917?ref_src=twsrc%5Etfw">April 8, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <br>
             <p class="small muted fragment">Too bad Twitter's tweet embed is not a Web Component 😥</p>
           </section>
         </section>

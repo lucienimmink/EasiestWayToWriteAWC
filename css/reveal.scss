@@ -1891,6 +1891,9 @@ form.stacked input.emoji-copy,
 .reveal .small {
   font-size: 1.5rem;
 }
+.reveal .muted {
+  filter: brightness(0.75);
+}
 .reveal .warn {
   padding: 2rem 5rem 2rem 8rem;
   background: rgba(255, 255, 64, 0.65);
@@ -1934,6 +1937,7 @@ form.stacked input.emoji-copy,
 .reveal .reveal-album {
   display: inline-block;
   width: 300px;
+  line-height: 1;
   album-art {
     height: 250px;
     width: 250px;
@@ -1943,6 +1947,18 @@ form.stacked input.emoji-copy,
 #google-maps iframe {
   height: 100vh;
   width: 100vw;
+}
+
+.reveal .twitter-tweet {
+  justify-content: center;
+  max-width: 100% !important;
+
+  iframe {
+    max-width: 550px;
+    flex-grow: 0 !important;
+    transform: scale(1.35);
+    transform-origin: top left;
+  }
 }
 ::-webkit-scrollbar {
   height: 10px;
