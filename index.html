@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/theme/league.css" />
     <link rel="stylesheet" href="lib/css/monokai.css" />
     <link rel="stylesheet" href="css/reveal-editor.css" />
+    <link rel="stylesheet" href="css/fullscreen-img.css" />
 
     <!-- Printing and PDF exports -->
     <script>
@@ -34,9 +35,7 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-group="title" data-background="#212121">
-          <h1>The easiest way to write Web Components</h1>
-        </section>
+        <section data-group="title" fullscreen-img="img/codemotion.webp" fullscreen-size="contain"></section>
         <section data-group="intro">
           <section>
             <blockquote>
@@ -150,7 +149,7 @@
           <section>
             Software Architect &amp; <br />
             Web Evangelist<br />
-            @ ISAAC <em>(part of Intracto group)</em> <br />
+            @ ISAAC <em>(part of Intracto Group)</em> <br />
             the Netherlands
           </section>
           <section>
@@ -747,7 +746,8 @@ handleTouchStart(event) {
         history: true,
         dependencies: [
           { src: "plugin/notes/notes.js", async: true },
-          { src: "plugin/highlight/highlight.js", async: true }
+          { src: "plugin/highlight/highlight.js", async: true },
+          { src: 'lib/js/fullscreen-img.js' },
         ]
       });
 
