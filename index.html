@@ -30,12 +30,19 @@
     <script src="plugin/jquery.min.js"></script>
     <script src="plugin/ace.js"></script>
     <script src="js/reveal-editor.js"></script>
-    <script async src="https://unpkg.com/twitter-status@latest/dist/twitter-status.min.js"></script>
+    <script
+      async
+      src="https://unpkg.com/twitter-status@latest/dist/twitter-status.min.js"
+    ></script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-group="title" fullscreen-img="img/codemotion.webp" fullscreen-size="contain"></section>
+        <section
+          data-group="title"
+          fullscreen-img="img/codemotion.webp"
+          fullscreen-size="contain"
+        ></section>
         <section data-group="intro">
           <section>
             <blockquote>
@@ -45,11 +52,13 @@
             </blockquote>
             <span class="fragment reveal-album">
               <album-art artist="the gathering"></album-art> <br />
-              the Gathering <br /> &nbsp;
+              the Gathering <br />
+              &nbsp;
             </span>
             <span class="fragment reveal-album">
               <album-art artist="Epica" album="Ωmega"></album-art><br />
-              Epica <br/> <span class="small muted">Ωmega</span>
+              Epica <br />
+              <span class="small muted">Ωmega</span>
             </span>
           </section>
           <section>
@@ -92,9 +101,7 @@
           <section>
             <h3>This works ... until it becomes too complex</h3>
             <ul>
-              <li class="fragment">
-                It requires a lot of shared knowledge
-              </li>
+              <li class="fragment">It requires a lot of shared knowledge</li>
               <li class="fragment">or "reading documentation"</li>
               <li class="fragment">Who is responsible for the styling?</li>
               <li class="fragment">
@@ -155,12 +162,12 @@
           <section>
             <div id="google-maps">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70.49368579825386!2d5.463075369060892!3d51.4512164400623!2m3!1f0!2f45.04469628013218!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x47c6d93fcde42b59%3A0xb1fdab2a93bde85d!2sISAAC!5e1!3m2!1sen!2snl!4v1571839417768!5m2!1sen!2snl"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6424700.839052427!2d0.9808937110867584!3d51.45192592257844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c6d93fcde42b59%3A0xb1fdab2a93bde85d!2sISAAC!5e1!3m2!1sen!2snl!4v1620030346170!5m2!1sen!2snl"
                 width="600"
                 height="450"
-                frameborder="0"
-                style="border:0;"
+                style="border: 0"
                 allowfullscreen=""
+                loading="lazy"
               ></iframe>
             </div>
           </section>
@@ -354,7 +361,8 @@ customElements.define('list', List, { extends: "ul" });</code></pre>
               JavaScript outside it.*
             </p>
             <p class="fragment small muted">
-              * It is still possible to access the dom from outside the element. It's probably not worth the effort.
+              * It is still possible to access the dom from outside the element.
+              It's probably not worth the effort.
             </p>
           </section>
           <section>
@@ -365,7 +373,11 @@ this._root = this.attachShadow({ mode: "closed" });
 const $myWebComponent = document.querySelector("my-web-component");
 $myWebComponent.shadowRoot // null
 $myWebComponent._root // shadow-root (closed)</code></pre>
-            <img class="fragment" src="img/shadow-dom-closed-override.gif" alt="Even will the component is 'closed' you can still override the content">
+            <img
+              class="fragment"
+              src="img/shadow-dom-closed-override.gif"
+              alt="Even will the component is 'closed' you can still override the content"
+            />
           </section>
           <section>
             <h3>Create the shadow DOM</h3>
@@ -422,9 +434,15 @@ shadow.appendChild(styleElem);</code></pre>
           <section>
             <h3>CSS variables and shadow DOM</h3>
             <ul>
-              <li class="fragment fade-in-then-semi-out">No shadow DOM: Uses global styling</li>
-              <li class="fragment fade-in-then-semi-out">Shadow DOM: scoped styling</li>
-              <li class="fragment fade-in-then-semi-out">Shadow DOM & CSS variables: can use CSS variables</li>
+              <li class="fragment fade-in-then-semi-out">
+                No shadow DOM: Uses global styling
+              </li>
+              <li class="fragment fade-in-then-semi-out">
+                Shadow DOM: scoped styling
+              </li>
+              <li class="fragment fade-in-then-semi-out">
+                Shadow DOM & CSS variables: can use CSS variables
+              </li>
             </ul>
           </section>
         </section>
@@ -435,7 +453,7 @@ shadow.appendChild(styleElem);</code></pre>
           <section>
             <h3>Weapons of choice</h3>
             <ul>
-              <li class="fragment">LitElement</li>
+              <li class="fragment">Lit(Element)</li>
               <li class="fragment">Stencil</li>
               <li class="fragment">vue.js</li>
             </ul>
@@ -443,7 +461,16 @@ shadow.appendChild(styleElem);</code></pre>
           </section>
           <section>
             <h3>LitElement</h3>
-            <blockquote>LitElement uses <span class="fragment highlight-blue">lit-html</span> to render into shadow DOM, and adds API to <span class="fragment highlight-blue">manage properties and attributes</span>. Properties are observed by default, and elements update <span class="fragment highlight-blue">asynchronously</span> when their properties change.</blockquote>
+            <blockquote>
+              LitElement uses
+              <span class="fragment highlight-blue">lit-html</span> to render
+              into shadow DOM, and adds API to
+              <span class="fragment highlight-blue"
+                >manage properties and attributes</span
+              >. Properties are observed by default, and elements update
+              <span class="fragment highlight-blue">asynchronously</span> when
+              their properties change.
+            </blockquote>
           </section>
           <section>
             <h3>LitElement &bull; Component</h3>
@@ -452,7 +479,7 @@ shadow.appendChild(styleElem);</code></pre>
 export class AlbumArt extends LitElement { ... } 
 customElements.define('album-art', MyElement);</code></pre>
             <span class="code-file">File: album-art-component.js</span>
-<pre><code class="hljs js" data-line-numbers>import {LitElement, customElement} from 'lit-element';
+            <pre><code class="hljs js" data-line-numbers>import {LitElement, customElement} from 'lit-element';
 
 @customElement('album-art')
 export class AlbumArt extends LitElement { ... }</code></pre>
@@ -511,7 +538,10 @@ class AlbumArt extends LitElement {
   }
 }</code></pre>
             <span class="code-file">File: album-art-component.ts</span>
-            <p class="fragment muted small">Note that only direct slotted children can be styled with <span class="code-element">::slotted()</span>.</p>
+            <p class="fragment muted small">
+              Note that only direct slotted children can be styled with
+              <span class="code-element">::slotted()</span>.
+            </p>
           </section>
 
           <section>
@@ -537,7 +567,14 @@ render() {
           </section>
           <section>
             <h3>Stencil</h3>
-            <blockquote>Stencil is a <span class="fragment highlight-blue">toolchain</span> for building reusable, scalable <span class="fragment highlight-blue">Design Systems</span>. Generate small, blazing fast, and 100% standards based Web Components that run in every browser.</blockquote>
+            <blockquote>
+              Stencil is a
+              <span class="fragment highlight-blue">toolchain</span> for
+              building reusable, scalable
+              <span class="fragment highlight-blue">Design Systems</span>.
+              Generate small, blazing fast, and 100% standards based Web
+              Components that run in every browser.
+            </blockquote>
           </section>
           <section>
             <h3>Stencil &bull; Component</h3>
@@ -593,7 +630,10 @@ export class AlbumArt {
   ... 
 }</code></pre>
             <span class="code-file">File: album-art-component.tsx</span>
-            <p class="fragment muted small">With Shadow DOM enabled, elements within the shadow root are scoped, and styles outside of the component do not apply.</p>
+            <p class="fragment muted small">
+              With Shadow DOM enabled, elements within the shadow root are
+              scoped, and styles outside of the component do not apply.
+            </p>
           </section>
 
           <section>
@@ -622,7 +662,10 @@ handleTouchStart(event) {
           </section>
           <section>
             <h3>vue.js</h3>
-            <blockquote>The Progressive JavaScript <span class="fragment highlight-blue">Framework</span></blockquote>
+            <blockquote>
+              The Progressive JavaScript
+              <span class="fragment highlight-blue">Framework</span>
+            </blockquote>
           </section>
           <section>
             <h3>vue.js</h3>
@@ -651,32 +694,76 @@ handleTouchStart(event) {
           </section>
           <section>
             <h3>vue.js &bull; size</h3>
-            <img src="img/vue-wc.webp" alt="output of vue-cli-service build --target wc">
+            <img
+              src="img/vue-wc.webp"
+              alt="output of vue-cli-service build --target wc"
+            />
           </section>
           <section>
             <h3>vue.js &bull; Vue Dependency</h3>
             <p class="warn">
-              In web component mode, Vue is <em>externalized</em>. This means the bundle will not bundle Vue even if your code imports Vue. The bundle will assume <span class="code-element">Vue</span> is available on the host page as a global variable.
+              In web component mode, Vue is <em>externalized</em>. This means
+              the bundle will not bundle Vue even if your code imports Vue. The
+              bundle will assume <span class="code-element">Vue</span> is
+              available on the host page as a global variable.
             </p>
           </section>
           <section>
             <h3>vue.js &bull; inline vue runtime</h3>
             <pre><code class="hljs bash">$ vue-cli-service build --target wc --inline-vue --name album-art album-art.vue</code></pre>
-            <img src="img/vue-wc-inline.webp" alt="output of vue-cli-service build --target wc --inline-vue">
+            <img
+              src="img/vue-wc-inline.webp"
+              alt="output of vue-cli-service build --target wc --inline-vue"
+            />
           </section>
           <section>
             <h3>vue.js vs LitElement</h3>
             <p class="muted small">vue.js</p>
-            <img src="img/vue-wc-inline.webp" alt="output of vue-cli-service build --target wc --inline-vue">
+            <img
+              src="img/vue-wc-inline.webp"
+              alt="output of vue-cli-service build --target wc --inline-vue"
+            />
             <p class="muted small">LitElement</p>
-            <img src="img/litelement-wc.webp" alt="output of the same web component build but written using LitElement">
-            <img class="fragment" src="img/litelement-wc-no-lib.webp" alt="output of the same web component build but written using LitElement">
+            <img
+              src="img/litelement-wc.webp"
+              alt="output of the same web component build but written using LitElement"
+            />
+            <img
+              class="fragment"
+              src="img/litelement-wc-no-lib.webp"
+              alt="output of the same web component build but written using LitElement"
+            />
           </section>
           <section>
             <h3>Web components interopbility</h3>
-            <blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">E.g., folks who like Vue should be able to use Vue to build their components, but still be able to consume things built another way. Similarly, folks who want to build in Vue should have a bigger market than Vue-centric apps. That future is enabled by interop + low runtime cost.</p>&mdash; Alex Russell (@slightlylate) <a href="https://twitter.com/slightlylate/status/1380202582635814917?ref_src=twsrc%5Etfw">April 8, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-              <br>
-            <p class="small muted fragment">Too bad Twitter's tweet embed is not a Web Component 😥</p>
+            <blockquote
+              class="twitter-tweet"
+              data-lang="en"
+              data-dnt="true"
+              data-theme="light"
+            >
+              <p lang="en" dir="ltr">
+                E.g., folks who like Vue should be able to use Vue to build
+                their components, but still be able to consume things built
+                another way. Similarly, folks who want to build in Vue should
+                have a bigger market than Vue-centric apps. That future is
+                enabled by interop + low runtime cost.
+              </p>
+              &mdash; Alex Russell (@slightlylate)
+              <a
+                href="https://twitter.com/slightlylate/status/1380202582635814917?ref_src=twsrc%5Etfw"
+                >April 8, 2021</a
+              >
+            </blockquote>
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+            <br />
+            <p class="small muted fragment">
+              Too bad Twitter's tweet embed is not a Web Component 😥
+            </p>
           </section>
         </section>
         <section data-group="closing-thoughts">
@@ -720,7 +807,10 @@ handleTouchStart(event) {
             <h3>Web components</h3>
             <ul>
               <li class="fragment">Love CSS variables</li>
-              <li class="fragment">Can be build and consumed <br />using various libraries / frameworks</li>
+              <li class="fragment">
+                Can be build and consumed <br />using various libraries /
+                frameworks
+              </li>
               <li class="fragment">Can fetch album art 🥳🎉</li>
             </ul>
           </section>
@@ -747,8 +837,8 @@ handleTouchStart(event) {
         dependencies: [
           { src: "plugin/notes/notes.js", async: true },
           { src: "plugin/highlight/highlight.js", async: true },
-          { src: 'lib/js/fullscreen-img.js' },
-        ]
+          { src: "lib/js/fullscreen-img.js" },
+        ],
       });
 
       $("code").RevealEditor();
